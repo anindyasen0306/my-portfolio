@@ -1,7 +1,6 @@
 import { motion } from "framer-motion";
 import { ArrowUpRight, Code2, Trophy } from "lucide-react";
 import { Container } from "../ui/Container";
-import { SectionHeading } from "../ui/SectionHeading";
 import { GithubMark } from "../ui/BrandIcons";
 import { codingProfiles } from "../../data/profile";
 
