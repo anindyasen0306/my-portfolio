@@ -1,0 +1,139 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400..700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --color-void: #07080b;
+  --color-surface: #0e1015;
+  --color-surface-2: #14171e;
+  --color-line: #232733;
+  --color-line-soft: #1a1d26;
+  --color-ink: #f2f3f5;
+  --color-ink-muted: #98a0ab;
+  --color-ink-faint: #767e89;
+
+  /* signature accents: terminal green / cyan / AI violet */
+  --color-blue: #38e0a4;
+  --color-cyan: #26d9e8;
+  --color-violet: #a488ff;
+  --color-amber: #e8c468;
+
+  --font-display: "Space Grotesk", "Inter", sans-serif;
+  --font-body: "Inter", sans-serif;
+  --font-mono: "JetBrains Mono", monospace;
+
+  --breakpoint-xs: 420px;
+}
+
+@layer base {
+  * {
+    border-color: var(--color-line);
+  }
+  html {
+    scroll-behavior: smooth;
+  }
+  section[id] {
+    scroll-margin-top: 5rem;
+  }
+  body {
+    background-color: var(--color-void);
+    color: var(--color-ink);
+    font-family: var(--font-body);
+    -webkit-font-smoothing: antialiased;
+  }
+  ::selection {
+    background-color: var(--color-blue);
+    color: var(--color-void);
+  }
+  :focus-visible {
+    outline: 2px solid var(--color-blue);
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+  .bg-grid {
+    background-image:
+      linear-gradient(to right, var(--color-line-soft) 1px, transparent 1px),
+      linear-gradient(to bottom, var(--color-line-soft) 1px, transparent 1px);
+    background-size: 56px 56px;
+  }
+  .placeholder-chip {
+    border: 1px dashed var(--color-ink-faint);
+    color: var(--color-ink-muted);
+  }
+  .link-underline {
+    position: relative;
+    background-image: linear-gradient(currentColor, currentColor);
+    background-position: 0 100%;
+    background-repeat: no-repeat;
+    background-size: 0% 1px;
+    transition: background-size 0.25s ease;
+  }
+  .link-underline:hover {
+    background-size: 100% 1px;
+  }
+  .font-mono-tight {
+    font-family: var(--font-mono);
+    letter-spacing: -0.01em;
+  }
+}
+
+/* ── Terminal cursor ─────────────────────────────────────────── */
+@keyframes caret-blink {
+  0%, 45% { opacity: 1; }
+  50%, 95% { opacity: 0; }
+  100% { opacity: 1; }
+}
+.caret-blink {
+  animation: caret-blink 1.05s steps(1) infinite;
+}
+
+/* ── Gentle float for the profile portrait ───────────────────── */
+@keyframes float-y {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+.animate-float {
+  animation: float-y 6s ease-in-out infinite;
+}
+
+/* ── Slow rotating technical ring ────────────────────────────── */
+@keyframes spin-slow {
+  to { transform: rotate(360deg); }
+}
+.animate-spin-slow {
+  animation: spin-slow 22s linear infinite;
+}
+.animate-spin-slow-reverse {
+  animation: spin-slow 30s linear infinite reverse;
+}
+
+/* ── Connector pulse for workflow diagrams ───────────────────── */
+@keyframes pulse-travel {
+  0% { offset-distance: 0%; opacity: 0; }
+  8% { opacity: 1; }
+  92% { opacity: 1; }
+  100% { offset-distance: 100%; opacity: 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .caret-blink,
+  .animate-float,
+  .animate-spin-slow,
+  .animate-spin-slow-reverse {
+    animation: none !important;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
